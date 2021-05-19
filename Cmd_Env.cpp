@@ -60,42 +60,42 @@ static void print_val(uint8_t type, uint8_t *target, uint8_t len) {
 	switch (type) {
 		case EnvType_u8: {
 			uint8_t val = *((uint8_t *) target);
-			printf("%" PRIu8 " (0x%02x)\n", val, val);
+			printf("%" PRIu8 " (0x%02" PRIx8 ")\n", val, val);
 		}
 			break;
 		case EnvType_s8: {
 			int8_t val = *((int8_t *) target);
-			printf("%" PRId8 " (0x%02x)\n", val, val);
+			printf("%" PRId8 " (0x%02" PRIx8 ")\n", val, val);
 		}
 			break;
 		case EnvType_u16: {
 			uint16_t val = *((uint16_t *) target);
-			printf("%" PRIu16 " (0x%04x)\n", val, val);
+			printf("%" PRIu16 " (0x%04" PRIx16 ")\n", val, val);
 		}
 			break;
 		case EnvType_s16: {
 			int16_t val = *((int16_t *) target);
-			printf("%" PRId16 " (0x%04x)\n", val, val);
+			printf("%" PRId16 " (0x%04" PRIx16 ")\n", val, val);
 		}
 			break;
 		case EnvType_u32: {
 			uint32_t val = *((uint32_t *) target);
-			printf("%" PRIu32 " (0x%08x)\n", val, val);
+			printf("%" PRIu32 " (0x%08" PRIx32 ")\n", val, val);
 		}
 			break;
 		case EnvType_s32: {
 			int32_t val = *((int32_t *) target);
-			printf("%" PRId32 " (0x%08x)\n", val, val);
+			printf("%" PRId32 " (0x%08" PRIx32 ")\n", val, val);
 		}
 			break;
 		case EnvType_u64: {
 			uint64_t val = *((uint64_t *) target);
-			printf("%" PRIu64 " (0x%016lx)\n", val, val);
+			printf("%" PRIu64 " (0x%016" PRIx64 ")\n", val, val);
 		}
 			break;
 		case EnvType_s64: {
 			int64_t val = *((int64_t *) target);
-			printf("%" PRId64 " (0x%016lx)\n", val, val);
+			printf("%" PRId64 " (0x%016" PRIx64 ")\n", val, val);
 		}
 			break;
 		case EnvType_str: {

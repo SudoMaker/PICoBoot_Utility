@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.14)
-project(PICo24_Flasher)
+project(PICoBoot_Utility)
 
 set(CMAKE_CXX_STANDARD 17)
 
@@ -36,4 +36,8 @@ CPMAddPackage(
 )
 
 add_executable(picoboot PICoBoot_Utility.cpp PICoBoot_Utility.hpp ScanDevice.cpp SerialOps.cpp Protocol.cpp Cmd_Flash.cpp Cmd_Info.cpp Cmd_Reboot.cpp Cmd_Devices.cpp Cmd_Env.cpp Cmd_Erase.cpp)
-target_link_libraries(picoboot stdc++fs cxxopts IODash iHexPP)
+target_link_libraries(picoboot cxxopts IODash iHexPP)
+
+if(UNIX AND NOT APPLE)
+    target_link_libraries(picoboot stdc++fs)
+endif()
