@@ -19,6 +19,8 @@
 
 #include "PICoBoot_Utility.hpp"
 
+#include <chrono>
+
 int Command_Flash(const std::vector<std::string>& args) {
 	if (args.size() != 2) {
 		puts("error: no file specified");
@@ -56,6 +58,7 @@ int Command_Flash(const std::vector<std::string>& args) {
 	size_t infile_size = infile.tellg();
 	infile.seekg(0, std::ios_base::beg);
 	size_t processed_size = 0;
+	size_t byte_count = 0;
 
 	std::string line;
 
@@ -112,19 +115,23 @@ int Command_Flash(const std::vector<std::string>& args) {
 			}
 
 
-
+			byte_count += len;
 			cnt++;
 		}
 	};
 
-	puts("");
+	auto time_start = std::chrono::high_resolution_clock::now();
 
 	while (std::getline(infile, line)) {
 		dec.read(line);
 		processed_size += line.size();
 	}
 
+	auto time_end = std::chrono::high_resolution_clock::now();
+	auto duration = (double)std::chrono::duration_cast<std::chrono::microseconds>(time_end - time_start).count() / 1000000;
+
 	printf("\033[2K\rFlashing ... [0x%08x] %zu/%zu %.2f%%\n", last_addr, infile_size, infile_size, (float)100);
+	printf("%zu bytes written in %.3f seconds, %zu bytes/sec\n", byte_count, duration, (size_t)(byte_count / duration));
 
 	return 0;
 }
