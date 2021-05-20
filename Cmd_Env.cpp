@@ -192,7 +192,6 @@ int Command_Env(const std::vector<std::string>& args) {
 	try {
 #endif
 	tty.make_raw();
-	tty.speed() = 2000000;
 #ifdef __CYGWIN__
 	} catch (...) {
 

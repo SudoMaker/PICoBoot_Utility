@@ -37,7 +37,6 @@ int Command_Info(const std::vector<std::string>& args) {
 	try {
 #endif
 	tty.make_raw();
-	tty.speed() = 2000000;
 #ifdef __CYGWIN__
 	} catch (...) {
 
@@ -45,19 +44,19 @@ int Command_Info(const std::vector<std::string>& args) {
 #endif
 
 	auto info_bl_ver = serial_chat(tty, FlasherCommand_GetBootloaderVersion, nullptr);
-	*info_bl_ver.end() = 0;
+	info_bl_ver.back() = 0;
 
 	auto info_board = serial_chat(tty, FlasherCommand_GetBoardName, nullptr);
-	*info_board.end() = 0;
+	info_board.back() = 0;
 
 	auto info_board_mf = serial_chat(tty, FlasherCommand_GetBoardManufacturer, nullptr);
-	*info_board_mf.end() = 0;
+	info_board_mf.back() = 0;
 
 	auto info_chip = serial_chat(tty, FlasherCommand_GetChipName, nullptr);
-	*info_chip.end() = 0;
+	info_chip.back() = 0;
 
 	auto info_chip_mf = serial_chat(tty, FlasherCommand_GetChipManufacturer, nullptr);
-	*info_chip_mf.end() = 0;
+	info_chip_mf.back() = 0;
 
 	printf("Device: %s\n", global_device_path.c_str());
 	puts("");

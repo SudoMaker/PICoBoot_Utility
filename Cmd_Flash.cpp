@@ -46,14 +46,19 @@ int Command_Flash(const std::vector<std::string>& args) {
 	try {
 #endif
 	tty.make_raw();
-	tty.speed() = 2000000;
 #ifdef __CYGWIN__
 	} catch (...) {
 
 	}
 #endif
 
+
+
 	std::ifstream infile(filepath);
+	if (!infile.good()) {
+		printf("error: unable to open file `%s'\n", filepath.c_str());
+		return 2;
+	}
 	infile.seekg(0, std::ios_base::end);
 	size_t infile_size = infile.tellg();
 	infile.seekg(0, std::ios_base::beg);

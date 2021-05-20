@@ -22,7 +22,7 @@
 std::vector<std::string> ScanDevice_GetAllTTYs() {
 	std::vector<std::string> ret;
 
-	for (const auto &dirEntry : std::filesystem::recursive_directory_iterator("/dev/")) {
+	for (const auto &dirEntry : std::filesystem::directory_iterator("/dev/")) {
 		auto p = dirEntry.path().string();
 #if defined(__linux__)
 		const char keyword[] = "/ttyACM";

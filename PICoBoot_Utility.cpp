@@ -52,7 +52,7 @@ void ShowHelpExtra() {
 std::string global_device_path;
 
 int main(int argc, char **argv) {
-	cxxopts::Options options("picoboot", "picoboot - Bootloader tool for the PotatoPi PICo series.");
+	cxxopts::Options options("picoboot", "picoboot - Utility for the PICoBoot bootloader.");
 
 	std::vector<std::string> positional_args;
 
