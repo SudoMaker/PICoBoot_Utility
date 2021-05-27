@@ -66,5 +66,15 @@ int Command_Info(const std::vector<std::string>& args) {
 	printf("Chip name: %s\n", info_chip.data());
 	printf("Chip Manufacturer: %s\n", info_chip_mf.data());
 
+	uint8_t cat = 0;
+	auto env_block0 = serial_chat(tty, FlasherCommand_EnvironmentRead, &cat);
+
+	if (env_block0.size() >= 52) {
+		printf("Serial: ");
+		fflush(stdout);
+		write(STDOUT_FILENO, env_block0.data()+36, 16);
+		puts("");
+	}
+
 	return 0;
 }

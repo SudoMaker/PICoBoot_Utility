@@ -26,6 +26,7 @@ std::vector<std::string> env_list = {
 	"allow_write",
 	"app_name",
 	"app_version",
+	"serial",
 
 	"reboot_count",
 	"watchdog_failed_count",
@@ -41,6 +42,7 @@ enum {
 
 	EnvType_str, EnvType_bin,
 };
+
 std::unordered_map<std::string, std::tuple<uint8_t, uint8_t, uint8_t, uint8_t>> env_table = {
 	// Category, Type, Offset, Size
 	{"watchdog_config", {0, EnvType_u8, 1, 1}},
@@ -49,6 +51,7 @@ std::unordered_map<std::string, std::tuple<uint8_t, uint8_t, uint8_t, uint8_t>> 
 	{"allow_write", {0, EnvType_u32, 8, 4}},
 	{"app_name", {0, EnvType_str, 12, 16}},
 	{"app_version", {0, EnvType_str, 28, 8}},
+	{"serial", {0, EnvType_str, 36, 16}},
 
 	{"reboot_count", {1, EnvType_u32, 0, 4}},
 	{"watchdog_failed_count", {1, EnvType_u32, 4, 4}},

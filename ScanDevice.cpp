@@ -60,7 +60,6 @@ std::vector<std::string> ScanDevice_GetValidDevices() {
 
 				try {
 					tty.make_raw();
-					tty.speed() = 2000000;
 				} catch (...) {
 #ifndef __CYGWIN__
 					continue;
