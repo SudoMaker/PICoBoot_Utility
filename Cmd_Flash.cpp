@@ -107,18 +107,18 @@ int Command_Flash(const std::vector<std::string>& args) {
 					auto rcv = serial_chat(tty, FlasherCommand_FlashWrite4, buf);
 					rc = *((uint8_t *)rcv.data());
 
+
 					if (rc != FlasherResult_OK) {
-						printf("error: failed to write flash: %s\n", FlasherResult_strerror(rc));
-						abort();
+						if (rc == FlasherResult_ERANGE) {
+							printf("\nnotice: writes to flash addr 0x%08x (0x%08x) rejected by bootloader.\n", addr, addr / 2);
+							printf("Maybe you're writing the configuration bits region?\n");
+						} else {
+							printf("\nerror: failed to write flash addr 0x%08x (0x%08x): %s\n", addr, addr / 2, FlasherResult_strerror(rc));
+							abort();
+						}
 					}
 				}
 			}
-
-			if (rc != FlasherResult_OK) {
-				printf("error: failed to write flash: %s\n", FlasherResult_strerror(rc));
-				abort();
-			}
-
 
 			byte_count += len;
 			cnt++;
