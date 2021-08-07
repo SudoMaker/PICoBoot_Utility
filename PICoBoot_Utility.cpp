@@ -91,6 +91,10 @@ int main(int argc, char **argv) {
 		return 1;
 	}
 
+	if (geteuid()) {
+		printf("Warning: You may encounter problems without root permissions\n");
+	}
+
 	std::unordered_map<std::string, std::function<int(const std::vector<std::string>&)>> command_map = {
 		{"devices", [](auto &arg){return Command_Devices(arg);}},
 		{"info", [](auto &arg){return Command_Info(arg);}},
