@@ -15,9 +15,9 @@ include(${CPM_DOWNLOAD_LOCATION})
 
 CPMAddPackage(
         NAME cxxopts
-        GITHUB_REPOSITORY jarro2783/cxxopts
+        GITHUB_REPOSITORY SudoMaker/cxxopts
         VERSION 3.0.0
-        GIT_TAG 97a4d5511ffefc81a97abd3d67b37f66e57655ee
+        GIT_TAG 5eca8a30012b69b76316b71fa391a89fe09256cb
         GIT_SHALLOW ON
 )
 
