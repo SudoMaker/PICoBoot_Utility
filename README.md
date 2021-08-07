@@ -30,3 +30,11 @@ Read help for more usages.
 - Working Internet connection (for package downloading)
 - CMake 3.14+
 - C++17 compatible compiler
+- POSIX environment (If you can't live without Windows, please use Cygwin or WSL)
+
+## Binary Releases
+Automatically built targets: 
+- Linux x86_64
+- MacOS x86_64
+
+See [releases](https://github.com/SudoMaker/PICoBoot_Utility/releases).
